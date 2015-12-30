@@ -36,7 +36,8 @@ def print_list_name(trello_list):
 
 def get_visible_cards_in_list(trello_list, trello_data):
     cards = [c for c in trello_data['cards']
-             if c['idList'] == trello_list['id']]
+             if c['idList'] == trello_list['id']
+             and not c['closed']]
     return cards
 
 
