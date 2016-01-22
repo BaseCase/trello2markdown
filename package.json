@@ -1,0 +1,16 @@
+{
+  "name": "trello2markdown",
+  "version": "0.0.1",
+  "description": "Converts a JSON export from Trello to a Markdown file. WIP.",
+  "repository": "https://github.com/BaseCase/trello2markdown",
+  "main": "index.js",
+  "author": "Casey Brant",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  },
+  "scripts": {
+    "test": "mocha test"
+  }
+}
