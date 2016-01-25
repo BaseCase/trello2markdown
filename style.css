@@ -7,3 +7,7 @@ header {
 header .about {
   float: right;
 }
+
+#markdown-output {
+  border: 1px solid #ccc;
+}

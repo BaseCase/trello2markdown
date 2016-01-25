@@ -15,6 +15,7 @@ Converts a JSON export from Trello to a Markdown file. WIP.
 - [ ] make the JS version runnable as a standalone on Node/installable on npm?
 - [ ] license file
 - [ ] save and load things in localStorage so that it's still there if you navigate away
+- [ ] no spellcheck on input box
 
 ## Dev notes
 * I'm choosing not to use `browserify` here so that it's easy to host this on Github.
