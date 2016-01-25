@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Convert Trello data to Markdown!</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  This is a work in progress. Nothing to see here yet...
+
+  <header>
+    <span class="title">Trello2Markdown!</span>
+    <span class="about">About</span>
+    <span class="about">Source code</span>
+    <span class="about">Whatever</span>
+  </header>
+
+  <div id="container">
+    <div id="json-area">
+      <h2>Put yer JSON here</h2>
+      <textarea id="json-input" rows="10" cols="80"></textarea>
+    </div>
+
+    <div id="markdown-area">
+      <h2>And here's yer Markdown</h2>
+      <div id="markdown-output">hi</div>
+    </div>
+  </div>
+
+  <script src="javascript/t2m.js"></script>
+  <script>
+    window.app = new Trello2Markdown();
+    app.start();
+  </script>
 </body>
 </html>

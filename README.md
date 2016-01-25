@@ -14,6 +14,7 @@ Converts a JSON export from Trello to a Markdown file. WIP.
 - [ ] update Python version to feature-parity with the JS version?
 - [ ] make the JS version runnable as a standalone on Node/installable on npm?
 - [ ] license file
+- [ ] save and load things in localStorage so that it's still there if you navigate away
 
 ## Dev notes
 * I'm choosing not to use `browserify` here so that it's easy to host this on Github.

@@ -1,0 +1,9 @@
+header {
+  width: 100%;
+  background: #ddd;
+  margin: 0;
+}
+
+header .about {
+  float: right;
+}
