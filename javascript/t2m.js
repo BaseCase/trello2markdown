@@ -6,13 +6,36 @@ function Trello2Markdown () {}
 Trello2Markdown.prototype.start = function() {
   var json_input_el = document.getElementById("json-input");
   json_input_el.addEventListener('input', this.handle_json_input_change.bind(this));
+
+  var url_load_btn = document.getElementById("btn-url-input");
+  url_load_btn.addEventListener('click', this.handle_load_url.bind(this));
 };
 
 Trello2Markdown.prototype.handle_json_input_change = function(event) {
-  var json_text = event.target.value;
+  var json_text = document.getElementById("json-input").value;
   var markdowned = this.convert_json_to_markdown(json_text);
   var markdown_output_el = document.getElementById("markdown-output");
   markdown_output_el.innerHTML = markdowned;
+};
+
+Trello2Markdown.prototype.handle_load_url = function() {
+  var url_input_el = document.getElementById("url-input");
+  var url = this.make_json_url(url_input_el.value);
+  var req = new XMLHttpRequest();
+  req.addEventListener('load', function(res) {
+    var json_text = document.getElementById("json-input").value;
+    var json_input_el = document.getElementById("json-input");
+    json_input_el.innerHTML = res.target.response;
+    this.handle_json_input_change();
+  }.bind(this));
+  req.open("GET", url);
+  req.send();
+};
+
+Trello2Markdown.prototype.make_json_url = function(url) {
+  var json_re = /.*\.json$/;
+  if (json_re.test(url)) return url;
+  return url + ".json";
 };
 
 

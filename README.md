@@ -3,16 +3,16 @@ Converts a JSON export from Trello to a Markdown file. WIP.
 
 ## TODO
 ### for v1
-- [ ] one-click import from public Trello boards (should be easy-ish since all you have to do is edit the URL)
 - [ ] instructions for how to get the export from private boards
 - [ ] license file
-- [ ] no spellcheck on input box
 - [ ] google analytics tracker
 - [ ] HOWTO video
 - [ ] update README so it makes sense
+- [ ] error handling on URL import
 - [x] live update the output pane upon changes to the input box
 - [x] basic layout of HTML/JS version
 - [x] error message if JSON is unparseable for some reason
+- [x] one-click import from public Trello boards (should be easy-ish since all you have to do is edit the URL)
 
 ### later
 - [ ] adjustable output (you can decide how many spaces after a header, for example)

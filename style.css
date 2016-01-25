@@ -45,6 +45,10 @@ header .info:last-child {
   min-height: 10em;
 }
 
+#url-input {
+  width: 35%;
+}
+
 #json-error {
   background: hsl(25, 75%, 81%);
   width: 70%;
