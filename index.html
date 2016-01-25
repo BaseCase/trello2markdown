@@ -3,27 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Convert Trello data to Markdown!</title>
+  <title>Trello2Markdown</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <span class="title">Trello2Markdown!</span>
-    <span class="about">About</span>
-    <span class="about">Source code</span>
-    <span class="about">Whatever</span>
+    <img src="t2m.png">
+    <span class="info">Convert a Trello board into a Markdown document!</span>
+    <span class="info"><a href="" target="_window">Intro video</a></span>
+    <span class="info"><a href="" target="_window">Source code</a></span>
   </header>
 
   <div id="container">
     <div id="json-area">
-      <h2>Put yer JSON here</h2>
-      <textarea id="json-input" rows="10" cols="80"></textarea>
+      <h2>Paste Trello export JSON here:</h2>
+      <textarea id="json-input"></textarea>
+    </div>
+
+    <div id="json-error" class="hidden">
+      Sorry, I couldn't parse your input for some reason! :/
     </div>
 
     <div id="markdown-area">
-      <h2>And here's yer Markdown</h2>
-      <div id="markdown-output">hi</div>
+      <h2>Markdown output appears here:</h2>
+      <textarea id="markdown-output">hi</textarea>
     </div>
   </div>
 

@@ -12,7 +12,7 @@ Trello2Markdown.prototype.handle_json_input_change = function(event) {
   var json_text = event.target.value;
   var markdowned = this.convert_json_to_markdown(json_text);
   var markdown_output_el = document.getElementById("markdown-output");
-  markdown_output_el.innerHTML = "<pre>" + markdowned + "</pre>";
+  markdown_output_el.innerHTML = markdowned;
 };
 
 
@@ -25,10 +25,12 @@ Trello2Markdown.prototype.convert_json_to_markdown = function(json_text) {
     'lists': []
   };
 
+  var error_el = document.getElementById("json-error");
   try {
     parsed_data = this.extract_useful_data(JSON.parse(json_text));
+    error_el.classList.add("hidden");
   } catch (e) {
-    console.log("couldn't parse it :/");
+    error_el.classList.remove("hidden");
   }
 
   var markdownified = this.generate_markdown(parsed_data);
