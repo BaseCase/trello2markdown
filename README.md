@@ -4,6 +4,7 @@ Converts a JSON export from Trello to a Markdown file. WIP.
 ## TODO
 ### for v1
 - [ ] instructions for how to get the export from private boards
+- [ ] ensure card and list orders are maintained
 - [ ] license file
 - [ ] google analytics tracker
 - [ ] HOWTO video

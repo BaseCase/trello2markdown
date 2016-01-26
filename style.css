@@ -46,6 +46,7 @@ header .info:last-child {
 }
 
 #url-input {
+  border: 1px solid hsl(202, 88%, 71%);
   width: 35%;
 }
 
