@@ -7,7 +7,6 @@ Converts a JSON export from Trello to a Markdown file. WIP.
 - [ ] instructions for how to get the export from private boards
 - [ ] ensure card and list orders are maintained
 - [ ] license file
-- [ ] google analytics tracker
 - [ ] HOWTO video
 - [ ] update README so it makes sense
 - [ ] error handling on URL import
@@ -15,6 +14,7 @@ Converts a JSON export from Trello to a Markdown file. WIP.
 - [x] basic layout of HTML/JS version
 - [x] error message if JSON is unparseable for some reason
 - [x] one-click import from public Trello boards (should be easy-ish since all you have to do is edit the URL)
+- [x] google analytics tracker
 
 ### later
 - [ ] adjustable output (you can decide how many spaces after a header, for example)
