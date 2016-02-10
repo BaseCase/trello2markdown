@@ -8,7 +8,9 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.4.1",
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "testdouble": "^0.8.0",
+    "testdouble-chai": "^0.2.1"
   },
   "scripts": {
     "test": "mocha test"

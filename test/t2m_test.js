@@ -1,9 +1,44 @@
-var expect = require('chai').expect;
-var t2m = require('../javascript/t2m.js');
+var td = require('testdouble');
+var chai = require('chai');
+var tdChai = require('testdouble-chai');
+chai.use(tdChai(td));
+var expect = chai.expect;
+var when = td.when;
+var T2M = require('../javascript/t2m.js');
 
-describe('Trello2Markdown', function() {
-  it("is a work in progress", function() {
-    var t = new t2m();
-    expect(t.hi()).to.equal("hi");
+
+describe('Trello2Markdown Integration', function() {
+  beforeEach(function() {
+    this.sampleJSON = {
+      name: 'Board Name',
+      lists: [
+        {
+          id: 1,
+          closed: false,
+          name: 'A List'
+        }
+      ],
+      cards: [
+        {
+          idList: 1,
+          closed: false,
+          name: 'Cool Card Name',
+          desc: "The text of that card"
+        }
+      ]
+    };
+  });
+
+  xit("takes in a JSON object exported from a Trello board and converts it to Markdown", function() {
+    var converter = new T2M.ConvertsTrelloToMarkdown(this.sampleJSON);
+    var expected_markdown = `# Board Name
+## A List
+### Cool Card Name
+
+The text of that card
+`;
+    expect(converter.convert()).to.equal(expected_markdown);
   });
 });
+
+
