@@ -4,12 +4,12 @@ Converts a JSON export from Trello to a Markdown file. WIP.
 
 ## TODO
 ### for v1
-- [ ] restore the parsing error handling stuff, which used to exist in the cowboyed code
 - [ ] instructions for how to get the export from private boards
 - [ ] ensure card and list orders are maintained
 - [ ] license file
 - [ ] update README so it makes sense
-- [ ] error handling on URL import
+- [x] error handling on URL import
+- [x] restore the parsing error handling stuff, which used to exist in the cowboyed code
 - [x] live update the output pane upon changes to the input box
 - [x] basic layout of HTML/JS version
 - [x] error message if JSON is unparseable for some reason

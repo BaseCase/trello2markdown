@@ -25,8 +25,12 @@
       <textarea id="json-input"></textarea>
     </div>
 
-    <div id="error" class="hidden">
-      Sorry, something went wrong! If Casey were less lazy, this would be more specific!
+    <div id="local-error" class="hidden error">
+      Sorry, I couldn't parse your JSON for some reason! Once I get time, this error message will be more informative.
+    </div>
+
+    <div id="network-error" class="hidden error">
+      The XHR request didn't work for some reason! Once I get time, this error message will be more informative.
     </div>
 
     <div id="markdown-area">

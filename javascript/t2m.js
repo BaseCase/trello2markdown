@@ -11,29 +11,34 @@ T2M.set_up_ui = function() {
       json_input_el = document.getElementById("json-input"),
       url_load_btn = document.getElementById("btn-url-input"),
       url_input_el = document.getElementById("url-input"),
-      error_el = document.getElementById("error");
+      local_error_el = document.getElementById("local-error"),
+      network_error_el = document.getElementById("network-error");
 
   json_input_el.addEventListener('input', handle_json_input_change);
   url_load_btn.addEventListener('click', handle_load_url);
 
   function handle_json_input_change(event) {
     try {
-      error_el.classList.add("hidden");
+      local_error_el.classList.add("hidden");
       var parsed_json = JSON.parse(json_input_el.value);
       converter = new T2M.ConvertsTrelloToMarkdown(parsed_json);
       markdown_output_el.innerHTML = converter.convert();
     } catch(e) {
-      error_el.classList.remove("hidden");
+      local_error_el.classList.remove("hidden");
     }
   }
 
   function handle_load_url() {
+    network_error_el.classList.add("hidden");
     var url = make_json_url(url_input_el.value);
     var req = new XMLHttpRequest();
     req.addEventListener('load', function(res) {
       json_input_el.value = res.target.response;
       handle_json_input_change();
     })
+    req.addEventListener('error', function() {
+      network_error_el.classList.remove("hidden");
+    });
     req.open("GET", url)
     req.send();
   }

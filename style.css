@@ -50,7 +50,7 @@ header .info:last-child {
   width: 35%;
 }
 
-#error {
+.error {
   background: hsl(25, 75%, 81%);
   width: 70%;
   margin: 1em 0;
