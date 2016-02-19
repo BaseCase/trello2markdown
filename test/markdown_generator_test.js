@@ -1,9 +1,4 @@
-var td = require('testdouble');
-var chai = require('chai');
-var tdChai = require('testdouble-chai');
-chai.use(tdChai(td));
-var expect = chai.expect;
-var when = td.when;
+var expect = require('chai').expect;
 var T2M = require('../javascript/t2m.js');
 
 
