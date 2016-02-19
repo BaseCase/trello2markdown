@@ -2,37 +2,35 @@ var T2M = T2M || {};
 
 
 //
-// For use when this is running on the Trello2Markdown webpage.
-// Don't call this function from node.
-// (It's all in the same file because I want this to be super easy to run
-//  as a GitHub page)
+// UI shell stuff. Only for use on the Trello2Markdown website, not when running in Node.
 //
 
 // TODO(cjb): restore the error handling stuff, which used to exist in the cowboyed code
 
 T2M.set_up_ui = function() {
-  var converter;
+  var converter,
+      markdown_output_el = document.getElementById("markdown-output"),
+      json_input_el = document.getElementById("json-input"),
+      url_load_btn = document.getElementById("btn-url-input"),
+      url_input_el = document.getElementById("url-input");
+
+  json_input_el.addEventListener('input', handle_json_input_change);
+  url_load_btn.addEventListener('click', handle_load_url);
 
   function handle_json_input_change(event) {
-    var json_text = document.getElementById("json-input").value;
-    var parsed_json = JSON.parse(json_text);
+    var parsed_json = JSON.parse(json_input_el.value);
     converter = new T2M.ConvertsTrelloToMarkdown(parsed_json);
-    var markdowned = converter.convert();
-    var markdown_output_el = document.getElementById("markdown-output");
-    markdown_output_el.innerHTML = markdowned;
+    markdown_output_el.innerHTML = converter.convert();
   }
 
   function handle_load_url() {
-    var url_input_el = document.getElementById("url-input");
     var url = make_json_url(url_input_el.value);
     var req = new XMLHttpRequest();
     req.addEventListener('load', function(res) {
-      var json_text = document.getElementById("json-input").value;
-      var json_input_el = document.getElementById("json-input");
       json_input_el.innerHTML = res.target.response;
       handle_json_input_change();
-    });
-    req.open("GET", url);
+    })
+    req.open("GET", url)
     req.send();
   }
 
@@ -41,18 +39,11 @@ T2M.set_up_ui = function() {
     if (json_re.test(url)) return url;
     return url + ".json";
   }
-
-  var json_input_el = document.getElementById("json-input");
-  json_input_el.addEventListener('input', handle_json_input_change);
-
-  var url_load_btn = document.getElementById("btn-url-input");
-  url_load_btn.addEventListener('click', handle_load_url);
 };
 
 
-
 //
-// core logic - this stuff can be run from either node or the browser
+// core logic; not dependent on browser
 //
 
 T2M.ConvertsTrelloToMarkdown = function(json_data, useful_data_extractor, markdown_generator) {
