@@ -31,7 +31,7 @@ T2M.set_up_ui = function() {
     var url = make_json_url(url_input_el.value);
     var req = new XMLHttpRequest();
     req.addEventListener('load', function(res) {
-      json_input_el.innerHTML = res.target.response;
+      json_input_el.value = res.target.response;
       handle_json_input_change();
     })
     req.open("GET", url)
