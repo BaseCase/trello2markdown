@@ -59,47 +59,77 @@ T2M.ConvertsTrelloToMarkdown = function(json_data, useful_data_extractor, markdo
   this.markdown_generator = markdown_generator || new T2M.MarkdownGenerator();
 };
 
-T2M.ConvertsTrelloToMarkdown.prototype.convert = function() {
-  this.document_data = this.document_data || this.useful_data_extractor.extract(this.json_data);
-  return this.markdown_generator.generate(this.document_data);
-};
+  T2M.ConvertsTrelloToMarkdown.prototype.convert = function() {
+    this.document_data = this.document_data || this.useful_data_extractor.extract(this.json_data);
+    return this.markdown_generator.generate(this.document_data);
+  };
 
 
 T2M.ExtractsUsefulData = function(json_data) {
   this.json_data = json_data || {};
 };
 
-T2M.ExtractsUsefulData.prototype.extract = function() {
-  return {
-    title: this.json_data.name,
-    chapters: this.chapters()
+  T2M.ExtractsUsefulData.prototype.extract = function() {
+    return {
+      title: this.json_data.name,
+      chapters: this.chapters()
+    };
   };
-};
 
-T2M.ExtractsUsefulData.prototype.chapters = function() {
-  var chapters = this.json_data.lists.filter(function(list) {
-    return !list.closed;
-  }).map(function(list) {
-    return {
-      title: list.name,
-      sections: this.sections_for_chapter(list.id)
-    };
-  }.bind(this));
-  return chapters;
-};
+  T2M.ExtractsUsefulData.prototype.chapters = function() {
+    var chapters = this.json_data.lists.filter(function(list) {
+      return !list.closed;
+    }).map(function(list) {
+      return {
+        title: list.name,
+        sections: this.sections_for_chapter(list.id)
+      };
+    }.bind(this));
+    return chapters;
+  };
 
-T2M.ExtractsUsefulData.prototype.sections_for_chapter = function(chapter_id) {
-  var sections = this.json_data.cards.filter(function(card) {
-    return card.idList === chapter_id && !card.closed;
-  }).map(function(card) {
-    return {
-      title: card.name,
-      content: card.desc
-    };
-  });
-  return sections;
-};
+  T2M.ExtractsUsefulData.prototype.sections_for_chapter = function(chapter_id) {
+    var sections = this.json_data.cards.filter(function(card) {
+      return card.idList === chapter_id && !card.closed;
+    }).map(function(card) {
+      return {
+        title: card.name,
+        content: card.desc
+      };
+    });
+    return sections;
+  };
 
+
+T2M.MarkdownGenerator = function() { };
+
+  T2M.MarkdownGenerator.prototype.generate = function(document_data) {
+    this.document_data = document_data;
+    return this.title() + this.chapters();
+  };
+
+  T2M.MarkdownGenerator.prototype.title = function() {
+    return this.document_data.title ?
+                "# " + this.document_data.title + "\n"
+              : "";
+  };
+
+  T2M.MarkdownGenerator.prototype.chapters = function() {
+    var chapters = this.document_data.chapters;
+    return chapters ?
+              chapters.map(function(chapter) {
+                return "## " + chapter.title + "\n" + this.sections(chapter)
+              }.bind(this)).join('')
+            : "";
+  };
+
+  T2M.MarkdownGenerator.prototype.sections = function(chapter) {
+    if (!chapter.sections) return "";
+    return chapter.sections.map(function(section) {
+      return (section.title? "### " + section.title + "\n" : "")
+             + section.content + "\n";
+    });
+  };
 
 
 
