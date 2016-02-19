@@ -11,11 +11,13 @@ var T2M = T2M || {};
 // TODO(cjb): restore the error handling stuff, which used to exist in the cowboyed code
 
 T2M.set_up_ui = function() {
-  var converter = new T2M.ConvertsTrelloToMarkdown();
+  var converter;
 
   function handle_json_input_change(event) {
     var json_text = document.getElementById("json-input").value;
-    var markdowned = converter.convert(json_text);
+    var parsed_json = JSON.parse(json_text);
+    converter = new T2M.ConvertsTrelloToMarkdown(parsed_json);
+    var markdowned = converter.convert();
     var markdown_output_el = document.getElementById("markdown-output");
     markdown_output_el.innerHTML = markdowned;
   }
@@ -127,74 +129,9 @@ T2M.MarkdownGenerator = function() { };
     if (!chapter.sections) return "";
     return chapter.sections.map(function(section) {
       return (section.title? "### " + section.title + "\n" : "")
-             + section.content + "\n";
-    });
+             + section.content + "\n\n";
+    }).join("");
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/******
-  begin cowboyed code:
-
-T2M.ConvertsTrelloToMarkdown.prototype.generate_markdown = function(data) {
-  return this.title(data) + "\n" +
-         this.all_sections(data);
-};
-
-
-//
-// markdown rendering stuff
-//
-T2M.ConvertsTrelloToMarkdown.prototype.title = function(data) {
-  return "# " + data.title;
-};
-
-
-T2M.ConvertsTrelloToMarkdown.prototype.all_sections = function(data) {
-  return data.lists.map(function(list) {
-    return this.section(list);
-  }.bind(this)).join('\n');
-};
-
-
-T2M.ConvertsTrelloToMarkdown.prototype.section = function(list_data) {
-  return "## " + list_data.name + "\n" +
-    list_data.cards.map(function(card) {
-      return this.subsection(card);
-    }.bind(this)).join('\n') + "\n";
-};
-
-
-T2M.ConvertsTrelloToMarkdown.prototype.subsection = function(card_data) {
-  return "### " + card_data.heading + "\n" + card_data.body + "\n";
-};
-
-end cowboy code
-********/
 
 
 if (typeof module !== "undefined") module.exports = T2M;

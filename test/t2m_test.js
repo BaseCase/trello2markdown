@@ -30,6 +30,7 @@ describe('Trello2Markdown Integration', function() {
 ## A List
 ### Cool Card Name
 The text of that card
+
 `;
     expect(converter.convert()).to.equal(expected_markdown);
   });

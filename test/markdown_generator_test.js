@@ -22,8 +22,11 @@ describe('MarkdownGenerator', function() {
     });
 
     it("returns sections as third-level headings", function() {
-      expect(this.subject.generate({ chapters: [{ title: "hi", sections: [{ title: "section", content: "cool" }] }] }))
-        .to.equal("## hi\n### section\ncool\n");
+      expect(this.subject.generate({ chapters: [{ title: "hi", sections: [
+        { title: "section1", content: "cool" },
+        { title: "section2", content: "neat" }
+      ] }] }))
+        .to.equal("## hi\n### section1\ncool\n\n### section2\nneat\n\n");
     });
   });
 });
