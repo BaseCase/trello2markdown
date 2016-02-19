@@ -5,22 +5,26 @@ var T2M = T2M || {};
 // UI shell stuff. Only for use on the Trello2Markdown website, not when running in Node.
 //
 
-// TODO(cjb): restore the error handling stuff, which used to exist in the cowboyed code
-
 T2M.set_up_ui = function() {
   var converter,
       markdown_output_el = document.getElementById("markdown-output"),
       json_input_el = document.getElementById("json-input"),
       url_load_btn = document.getElementById("btn-url-input"),
-      url_input_el = document.getElementById("url-input");
+      url_input_el = document.getElementById("url-input"),
+      error_el = document.getElementById("error");
 
   json_input_el.addEventListener('input', handle_json_input_change);
   url_load_btn.addEventListener('click', handle_load_url);
 
   function handle_json_input_change(event) {
-    var parsed_json = JSON.parse(json_input_el.value);
-    converter = new T2M.ConvertsTrelloToMarkdown(parsed_json);
-    markdown_output_el.innerHTML = converter.convert();
+    try {
+      error_el.classList.add("hidden");
+      var parsed_json = JSON.parse(json_input_el.value);
+      converter = new T2M.ConvertsTrelloToMarkdown(parsed_json);
+      markdown_output_el.innerHTML = converter.convert();
+    } catch(e) {
+      error_el.classList.remove("hidden");
+    }
   }
 
   function handle_load_url() {
