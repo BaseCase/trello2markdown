@@ -1,12 +1,43 @@
-# trello2markdown
-Converts a JSON export from Trello to a Markdown file. WIP.
-<a href="http://caseybrant.com/trello2markdown">Live version here.</a>
+# Trello2Markdown
+Trello2Markdown is a little chunk of code that converts a
+[Trello](http://trello.com) board into a
+[Markdown](https://daringfireball.net/projects/markdown/) document. It converts
+the board's title, list names, and card names into nested headings, and it
+turns card description text into paragraphs. For public boards, it can just
+take a URL and grab the data itself. For private boards, you can use Trello's
+export feature and give the resulting JSON to Trello2Markdown.
 
-## TODO
+## Web version
+There's a [web app version](http://caseybrant.com/trello2markdown) available,
+which is the easiest way to do it.
+
+[Here is a short screencast](https://www.youtube.com/watch?v=WP_pQNYzf8Y)
+demoing the web app.
+
+
+## Command line version
+*(Coming soon!)*
+
+You can also install it as a command line NodeJS program, which enables you to
+do stuff like pipe the output somewhere. (not yet, but soon)
+
+
+## Installation instructions
+*to be written once the command line version works*
+
+
+## Developer notes
+I'm intentionally avoiding JS build tools because the website version of
+Trello2Markdown has no backend and is just hosted right on Github Pages. The
+`t2m.js` file has a bit more stuff in it than it logically ought to, for the
+same reason.
+
+
+## Vesitigial TODO list
 ### for v1
 - [ ] instructions for how to get the export from private boards
-- [ ] ensure card and list orders are maintained
-- [ ] update README so it makes sense
+- [x] update README so it makes sense
+- [x] ensure card and list orders are maintained
 - [x] license file
 - [x] error handling on URL import
 - [x] restore the parsing error handling stuff, which used to exist in the cowboyed code
