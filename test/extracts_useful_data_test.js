@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var T2M = require('../javascript/t2m.js');
+var T2M = require('../lib/t2m.js');
 
 
 describe('ExtractsUsefulData', function() {
