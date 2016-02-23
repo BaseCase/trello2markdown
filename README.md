@@ -35,7 +35,7 @@ same reason.
 
 ## Vesitigial TODO list
 ### for v1
-- [ ] instructions for how to get the export from private boards
+- [x] instructions for how to get the export from private boards
 - [x] update README so it makes sense
 - [x] ensure card and list orders are maintained
 - [x] license file
@@ -60,4 +60,6 @@ same reason.
 
 
 ## Dev notes
-* I'm choosing not to use `browserify` here so that it's easy to host this on Github.
+* I'm choosing not to use something like `browserify` here so that it's easy to
+host this on Github. The result is that there are more responsibilities in
+`t2m.js` than I'd normally put in one file, but that's on purpose.
