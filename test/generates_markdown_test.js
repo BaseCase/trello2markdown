@@ -2,9 +2,9 @@ var expect = require('chai').expect;
 var T2M = require('../lib/t2m.js');
 
 
-describe('MarkdownGenerator', function() {
+describe('GeneratesMarkdown', function() {
   beforeEach(function() {
-    this.subject = new T2M.MarkdownGenerator();
+    this.subject = new T2M.GeneratesMarkdown();
   });
 
   describe('.generate()', function() {
