@@ -36,4 +36,3 @@ The text of that card
   });
 });
 
-

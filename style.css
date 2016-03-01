@@ -40,6 +40,10 @@ header .info:last-child {
   width: 90%;
 }
 
+#output {
+  width: 80%;
+}
+
 #json-input {
   font-size: 70%;
   min-height: 10em;
@@ -59,6 +63,16 @@ header .info:last-child {
 
 .hidden {
   display: none;
+}
+
+#markdown-area > div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#config {
+  border: 1px solid hsl(202, 88%, 71%);
+  padding: 0.5em;
 }
 
 #markdown-output {
